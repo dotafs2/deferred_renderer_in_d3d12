@@ -6,6 +6,7 @@
 #include "Wave.h"
 #include <DirectXMath.h>
 #include "VertexStructures.h"
+#include "GameTimer.h"
 
 class directxProcess :public windowsApp
 {
@@ -80,7 +81,6 @@ protected:
 	}
 	void Render()
 	{
-		
 		auto commandQueue = GetDeviceResources()->GetCommandQueue();
 		PIXBeginEvent(commandQueue, 0, L"Render");
 		{
@@ -142,10 +142,10 @@ protected:
 	{
 		// Every quarter second, generate a random wave.
 		
-		mWave.Disturb(1, 2, 0.5);
+		// mWave.Disturb(1, 2, 0.5);
 
 		// Update the wave simulation.
-		mWave.Update();
+		//mWave.Update();
 
 		// Update the wave vertex buffer with the new solution.
 		// auto currWavesVB = mCurrFrameResource->WavesVB.get();

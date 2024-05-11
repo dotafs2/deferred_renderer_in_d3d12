@@ -86,6 +86,7 @@
     <ClInclude Include="DirectxApp.h" />
     <ClInclude Include="DirectXMathConverter.h" />
     <ClInclude Include="DirectxHelper.h" />
+    <ClInclude Include="GameTimer.h" />
     <ClInclude Include="ScreenQuadRenderer.h" />
     <ClInclude Include="ShaderManager.h" />
     <ClInclude Include="Wave.h" />
@@ -97,6 +98,7 @@
     <ClCompile Include="CameraManager.cpp" />
     <ClCompile Include="DeferredRender.cpp" />
     <ClCompile Include="DirectxHelper.cpp" />
+    <ClCompile Include="GameTimer.cpp" />
     <ClCompile Include="ScreenQuadRenderer.cpp" />
     <ClCompile Include="ShaderManager.cpp" />
     <ClCompile Include="main.cpp" />

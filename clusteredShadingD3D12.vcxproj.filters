@@ -66,6 +66,9 @@
     <ClInclude Include="DeferredRender.h">
       <Filter>Techniques</Filter>
     </ClInclude>
+    <ClInclude Include="GameTimer.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -94,6 +97,9 @@
     </ClCompile>
     <ClCompile Include="DeferredRender.cpp">
       <Filter>Techniques</Filter>
+    </ClCompile>
+    <ClCompile Include="GameTimer.cpp">
+      <Filter>Managers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
