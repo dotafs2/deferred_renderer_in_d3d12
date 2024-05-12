@@ -1,7 +1,6 @@
 #include "stdafx.h"
 
 
-#include "VertexStructures.h"
 #include "Wave.h"
 #include "DirectXMathConverter.h"
 #include <vector>
@@ -10,18 +9,14 @@
 #include <math.h>
 
 using namespace DirectX;
-void Wave::Init()
+void Wave::Init(int m, int n, float dx, float dt, float speed, float damping)
 {
-	resourceSetup();
+	resourceSetup(m,n,dx,dt,speed,damping);
 }
 
-void Wave::resourceSetup()
+void Wave::resourceSetup(int m, int n, float dx, float dt, float speed, float damping)
 {
-	int m = 128;
-	int n = 128; float dx = 1.0f;
-	float dt = 0.03f; float speed = 4.0f; float damping = 0.2f;
 
-	std::vector< NormalVertex > verts;
 	verts.resize(m * n);
 
 	mNumRows = m;
@@ -42,32 +37,29 @@ void Wave::resourceSetup()
 	mPrevSolution.resize(m * n);
 	mCurrSolution.resize(m * n);
 	mTangentX.resize(m * n);
+	mNormals.resize(m * n);
 
 	// Generate grid vertices in system memory.
 
 	float halfWidth = (n - 1) * dx * 0.5f;
 	float halfDepth = (m - 1) * dx * 0.5f;
-	int index = 0;
 	for (int i = 0; i < m; ++i) {
 		float z = halfDepth - i * dx;
 		for (int j = 0; j < n; ++j) {
 			float x = -halfWidth + j * dx;
 			mPrevSolution[i * n + j] = XMFLOAT3(x, 0.0f, z);
 			mCurrSolution[i * n + j] = XMFLOAT3(x, 0.0f, z);
-			verts[index].position = XMFLOAT4(x, 0, z, 1.0f);
-			verts[index].normal = XMFLOAT3(0.0f, 1.0f, 0.0f);
+			verts[i*n + j].position = XMFLOAT4(x, 0.0f, z, 1.0f);
+			verts[i*n + j].normal = XMFLOAT3(0.0f, 1.0f, 0.0f);
 			mTangentX[i * n + j] = XMFLOAT3(1.0f, 0.0f, 0.0f);
-			index++;
+			mNormals[i * n + j] = XMFLOAT3(0.0f, 1.0f, 0.0f);
 		}
 	}
-
-
 ;
 	//int* triangles = new int[nbIndexes];
 
-		// 初始化索引数组
-	int nbFaces = (m - 1) * (n - 1);  // 四边形数量
-	int nbTriangles = nbFaces * 2;    // 三角形数量
+	int nbFaces = mVertexCount;  // 四边形数量
+	int nbTriangles = mTriangleCount;    // 三角形数量
 	int nbIndexes = nbTriangles * 3;  // 索引数量
 	std::vector<int> triangles(nbIndexes);
 
@@ -89,10 +81,6 @@ void Wave::resourceSetup()
 		 }
 	 }
 	
-
-
-
-
 
 
 	mTriangleSize= verts.size();
@@ -185,16 +173,14 @@ float Wave::Depth()const
 
 
 
-
-void Wave::Update()
+void Wave::Update(float dt)
 {
 	static float t = 0;
 
 	// Accumulate time.
-	// t += dt;
-
+	t += dt;
 	// Only update the simulation at the specified time step.
-	if (t >= 0)
+	if (t >= mTimeStep)
 	{
 		// Only update interior points; we use zero boundary conditions.
 		concurrency::parallel_for(1, mNumRows - 1, [this](int i)
@@ -243,6 +229,7 @@ void Wave::Update()
 					mNormals[i * mNumCols + j].x = -r + l;
 					mNormals[i * mNumCols + j].y = 2.0f * mSpatialStep;
 					mNormals[i * mNumCols + j].z = b - t;
+					verts[i * mNumCols + j].normal = mNormals[i * mNumCols + j];
 
 					XMVECTOR n = XMVector3Normalize(XMLoadFloat3(&mNormals[i * mNumCols + j]));
 					XMStoreFloat3(&mNormals[i * mNumCols + j], n);
@@ -255,13 +242,12 @@ void Wave::Update()
 	}
 }
 
-
 void Wave::Disturb(int i, int j, float magnitude)
 {
 	// Don't disturb boundaries.
+	
 	assert(i > 1 && i < mNumRows - 2);
 	assert(j > 1 && j < mNumCols - 2);
-
 	float halfMag = 0.5f * magnitude;
 
 	// Disturb the ijth vertex height and its neighbors.
@@ -270,4 +256,5 @@ void Wave::Disturb(int i, int j, float magnitude)
 	mCurrSolution[i * mNumCols + j - 1].y += halfMag;
 	mCurrSolution[(i + 1) * mNumCols + j].y += halfMag;
 	mCurrSolution[(i - 1) * mNumCols + j].y += halfMag;
+	verts[i * mNumCols + j].position.y = mCurrSolution[i * mNumCols + j].y;
 }

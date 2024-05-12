@@ -1,3 +1,4 @@
+#pragma once
 #include "windowsApp.h"
 #include "DirectxHelper.h"
 #include <stdio.h>
@@ -7,6 +8,18 @@
 #include <DirectXMath.h>
 #include "VertexStructures.h"
 #include "GameTimer.h"
+#include "MathHelper.h"
+
+using Microsoft::WRL::ComPtr;
+using namespace std;
+using namespace DirectX;
+
+
+std::wstring mMainWndCaption = L"d3d App";
+D3D_DRIVER_TYPE md3dDriverType = D3D_DRIVER_TYPE_HARDWARE;
+DXGI_FORMAT mBackBufferFormat = DXGI_FORMAT_R8G8B8A8_UNORM;
+DXGI_FORMAT mDepthStencilFormat = DXGI_FORMAT_D24_UNORM_S8_UINT;
+
 
 class directxProcess :public windowsApp
 {
@@ -17,8 +30,8 @@ class directxProcess :public windowsApp
 	LightData mLightData;
 	GCamera mCamera;
 	bool mInit = false;
-	Wave mWave;
-
+	std::unique_ptr<Wave> mWave;
+	GameTimer mTimer;
 	std::shared_ptr<D3dDeviceManager> GetDeviceResources()
 	{
 		if (g_d3dObjects != nullptr && g_d3dObjects->IsDeviceRemoved())
@@ -38,16 +51,106 @@ class directxProcess :public windowsApp
 		return g_d3dObjects;
 
 	};
+public:
+	int Run(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR    lpCmdLine, int     nCmdShow)
+	{
+		appPointer = this;
+		UNREFERENCED_PARAMETER(hPrevInstance);
+		UNREFERENCED_PARAMETER(lpCmdLine);
+		MSG msg;
+
+		WNDCLASSEX wc;
+		ZeroMemory(&wc, sizeof(wc));
+		ZeroMemory(&msg, sizeof(msg));
+		mTimer.Reset();
+
+		wc.cbSize = sizeof(wc);
+		wc.style = CS_HREDRAW | CS_VREDRAW;
+		wc.lpfnWndProc = &windowsApp::WndProc;
+		wc.hInstance = hInstance;
+		wc.hCursor = LoadCursor(nullptr, IDC_ARROW);
+		wc.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
+		wc.lpszClassName = "Deferred Shading";
+		RegisterClassEx(&wc);
+
+		RECT rect = { 0, 0, mWidth, mHeight };
+		DWORD dwStyle = WS_OVERLAPPEDWINDOW & ~WS_MAXIMIZEBOX;
+		AdjustWindowRect(&rect, dwStyle, FALSE);
+		mHwnd = CreateWindow(wc.lpszClassName,
+			wc.lpszClassName,
+			dwStyle,
+			CW_USEDEFAULT, CW_USEDEFAULT,
+			rect.right - rect.left, rect.bottom - rect.top,
+			NULL, NULL, hInstance, NULL);
+
+		ShowWindow(mHwnd, nCmdShow);
+		UpdateWindow(mHwnd);
+		Setup();
+
+		while (msg.message != WM_QUIT) {
+			if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE)) {
+				TranslateMessage(&msg);
+				DispatchMessage(&msg);
+
+			}
+			else {
+				mTimer.Tick();
+				CalculateFrameStats();
+				Update(mTimer);
+				Render(mTimer);
+
+			}
+		}
+
+
+
+		return (int)msg.wParam;
+	}
 
 protected:
+	
 	void OnDeviceRemoved()
 	{
 
 	};
+	void directxProcess::CalculateFrameStats()
+	{
+		static int frameCnt = 0;
+		static float timeElapsed = 0.0f;
+
+		frameCnt++;
+
+		// Compute averages over one second period.
+		if ((mTimer.TotalTime() - timeElapsed) >= 1.0f)
+		{
+			float fps = float(frameCnt); // fps = frameCnt / 1
+			float mspf = 1000.0f / fps;
+
+			std::wstring fpsStr = std::to_wstring(fps);
+			std::wstring mspfStr = std::to_wstring(mTimer.DeltaTime());
+
+			std::wstring windowText = mMainWndCaption +
+				L"    fps: " + fpsStr +
+				L"   mspf: " + mspfStr;
+
+		SetWindowTextW(mHwnd, windowText.c_str());
+
+
+			// Reset for next average.
+			frameCnt = 0;
+			timeElapsed += 1.0f;
+		}
+	}
+
+
+
+
+
+
 	void Setup()
 	{
-	
-		
+		// reset the timer
+		mTimer.Reset();
 		auto commandQueue = GetDeviceResources()->GetCommandQueue();
 		
 		PIXBeginEvent(commandQueue, 0, L"Setup");
@@ -68,7 +171,7 @@ protected:
 			mDeferredTech.Init();
 			mDeferredTech.UpdateConstantBuffer(mCamData, mLightData);
 
-			mWave.Init();
+			mWave->Init(128,128,1.0f,0.03f,4.0f,0.2f);
 
 			ThrowIfFailed(mCommandList->Close());
 			ID3D12CommandList* ppCommandLists[] = { mCommandList.Get() };
@@ -79,7 +182,7 @@ protected:
 		PIXEndEvent(commandQueue);
 		mInit = true;
 	}
-	void Render()
+	void Render(const GameTimer& gt)
 	{
 		auto commandQueue = GetDeviceResources()->GetCommandQueue();
 		PIXBeginEvent(commandQueue, 0, L"Render");
@@ -100,7 +203,7 @@ protected:
 			mCommandList->RSSetViewports(1, &g_d3dObjects->GetScreenViewport());
 
 			mDeferredTech.ApplyGBufferPSO(mCommandList.Get());
-			mWave.Render(mCommandList);
+			mWave->Render(mCommandList);
 		
 
 			mCommandList->OMSetRenderTargets(1, &g_d3dObjects->GetRenderTargetView(),true, nullptr);
@@ -121,8 +224,10 @@ protected:
 		PIXEndEvent(commandQueue);
 	}
 
-	void Update()
+	void Update(const GameTimer& gt)
 	{
+		mTimer.Tick();
+
 		auto commandQueue = GetDeviceResources()->GetCommandQueue();
 	
 		PIXBeginEvent(commandQueue, 0, L"Update");
@@ -132,36 +237,48 @@ protected:
 			mCamData.InvPV = mCamera.InvScreenProjView();
 			mCamData.CamPos = mCamera.Position();
 			mDeferredTech.UpdateConstantBuffer(mCamData, mLightData);
+			UpdateWaves(gt);
 		}
-		UpdateWaves();
 		PIXEndEvent(commandQueue);
 
 	}
 
-	void UpdateWaves()
+
+	void UpdateWaves(const GameTimer& gt)
 	{
 		// Every quarter second, generate a random wave.
-		
-		// mWave.Disturb(1, 2, 0.5);
+		static float t_base = 0.0f;
+		if ((mTimer.TotalTime() - t_base) >= 0.25f)
+		{
+			t_base += 0.25f;
+
+			int i = MathHelper::Rand(4, mWave->RowCount() - 5);
+			int j = MathHelper::Rand(4, mWave->ColumnCount() - 5);
+
+			float r = MathHelper::RandF(0.2f, 0.5f);
+
+			mWave->Disturb(i, j, r);
+		}
 
 		// Update the wave simulation.
-		//mWave.Update();
+		mWave->Update(gt.DeltaTime());
 
 		// Update the wave vertex buffer with the new solution.
-		// auto currWavesVB = mCurrFrameResource->WavesVB.get();
-		for (int i = 0; i < mWave.VertexCount(); ++i)
+		auto currWavesVB = mCurrFrameResource->WavesVB.get();
+		for (int i = 0; i < mWave->VertexCount(); ++i)
 		{
 			NormalVertex v;
 
-			DirectX::XMFLOAT3 position3 = mWave.Position(i);
-			DirectX::XMFLOAT4 position4(position3.x, position3.y, position3.z, 1.0f); 
+			v.position = DirectX::XMFLOAT4(mWave->Position(i).x,mWave->Position(i).y, mWave->Position(i).z,1.0f);
+		
 
-			// currWavesVB->CopyData(i, v);
+			currWavesVB->CopyData(i, v);
 		}
 
 		// Set the dynamic VB of the wave renderitem to the current frame VB.
-		// mWavesRitem->Geo->VertexBufferGPU = currWavesVB->Resource();
+		mWavesRitem->Geo->VertexBufferGPU = currWavesVB->Resource();
 	}
+
 
 
 	void Resize(UINT width, UINT height)

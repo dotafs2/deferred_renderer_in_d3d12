@@ -1,15 +1,21 @@
-#pragma once
+
+#ifndef WAVES_H
+#define WAVES_H
 #include <vector>
 #include "DirectxHelper.h"
-
+#include "VertexStructures.h"
 class Wave
 {
 public:
-	void Init();
-	void resourceSetup();
+	Wave(int m, int n, float dx, float dt, float speed, float damping);
+	Wave(const Wave& rhs) = delete;
+	Wave& operator=(const Wave& rhs) = delete;
+	~Wave();
+	void Init(int m, int n, float dx, float dt, float speed, float damping);
+	void resourceSetup(int m, int n, float dx, float dt, float speed, float damping);
 	void Render(ComPtr<ID3D12GraphicsCommandList> commandList);
 	void Disturb(int i, int j, float magnitude);
-	void Update();
+	void Update(float dt);
 	int RowCount()const;
 	int ColumnCount()const;
 	int VertexCount()const;
@@ -61,4 +67,8 @@ private:
 	std::vector<DirectX::XMFLOAT3> mCurrSolution;
 	std::vector<DirectX::XMFLOAT3> mNormals;
 	std::vector<DirectX::XMFLOAT3> mTangentX;
+	std::vector< NormalVertex > verts;
 };
+
+
+#endif // WAVES_H

@@ -1,12 +1,16 @@
+#pragma once
 #include <windows.h>
 
+
+class windowsApp;
+extern windowsApp* appPointer;
 class windowsApp
 {
 
 public:
 	windowsApp();
 	
-	int Run(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR    lpCmdLine,int  nCmdShow);
+	virtual int Run(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) = 0;
 protected:
 	static LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 	virtual void Setup(){ return ; }
@@ -20,5 +24,5 @@ protected:
 	virtual void MouseRelease(UINT key) { return; }
 	int mWidth;
 	int mHeight;
-	HWND mHwnd;
+	HWND mHwnd = nullptr;
 };

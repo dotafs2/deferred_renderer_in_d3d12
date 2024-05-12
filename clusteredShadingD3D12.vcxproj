@@ -87,6 +87,7 @@
     <ClInclude Include="DirectXMathConverter.h" />
     <ClInclude Include="DirectxHelper.h" />
     <ClInclude Include="GameTimer.h" />
+    <ClInclude Include="MathHelper.h" />
     <ClInclude Include="ScreenQuadRenderer.h" />
     <ClInclude Include="ShaderManager.h" />
     <ClInclude Include="Wave.h" />
