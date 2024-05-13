@@ -13,9 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Shaders">
-      <UniqueIdentifier>{3dac389e-1ffc-49c8-9ad8-3881e06fe88c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Managers">
       <UniqueIdentifier>{052d6356-759c-4a7d-af83-e673fd2037b3}</UniqueIdentifier>
     </Filter>
@@ -27,6 +24,9 @@
     </Filter>
     <Filter Include="Techniques">
       <UniqueIdentifier>{5c23043e-e794-4d6c-a915-2a2521091ea6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Shaders">
+      <UniqueIdentifier>{3dac389e-1ffc-49c8-9ad8-3881e06fe88c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -122,24 +122,24 @@
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="BasicVS.hlsl">
-      <Filter>Shaders</Filter>
+      <Filter>Resource Files\Shaders</Filter>
     </FxCompile>
     <FxCompile Include="BasicPS.hlsl">
-      <Filter>Shaders</Filter>
+      <Filter>Resource Files\Shaders</Filter>
     </FxCompile>
     <FxCompile Include="ScreenQuadVS.hlsl">
-      <Filter>Shaders</Filter>
+      <Filter>Resource Files\Shaders</Filter>
     </FxCompile>
     <FxCompile Include="LightPassPS.hlsl">
-      <Filter>Shaders</Filter>
+      <Filter>Resource Files\Shaders</Filter>
     </FxCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Lighting.hlsli">
-      <Filter>Shaders</Filter>
+      <Filter>Resource Files\Shaders</Filter>
     </None>
     <None Include="DeferredRender.hlsli">
-      <Filter>Shaders</Filter>
+      <Filter>Resource Files\Shaders</Filter>
     </None>
   </ItemGroup>
 </Project>

@@ -261,23 +261,9 @@ protected:
 		}
 
 		// Update the wave simulation.
-		// mWave->Update(gt.DeltaTime());
-
-		// Update the wave vertex buffer with the new solution.
-		// auto currWavesVB = mCurrFrameResource->WavesVB.get();
-		for (int i = 0; i < mWave->VertexCount(); ++i)
-		{
-			NormalVertex v;
-
-			v.position = DirectX::XMFLOAT4(mWave->Position(i).x,mWave->Position(i).y, mWave->Position(i).z,1.0f);
-		
-
-			// currWavesVB->CopyData(i, v);
-		}
-
-		// Set the dynamic VB of the wave renderitem to the current frame VB.
-		// mWavesRitem->Geo->VertexBufferGPU = currWavesVB->Resource();
+		mWave->Update(gt.DeltaTime());
 	}
+
 
 
 

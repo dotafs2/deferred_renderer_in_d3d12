@@ -15,9 +15,13 @@ public:
 	void resourceSetup(int m, int n, float dx, float dt, float speed, float damping);
 	void Render(ComPtr<ID3D12GraphicsCommandList> commandList);
 	void Disturb(int i, int j, float magnitude);
+	void CreateResources(ID3D12Device* device);
 	void Update(float dt);
+	void UpdateVertexBuffer();
+
 	int RowCount()const;
 	int ColumnCount()const;
+
 	int VertexCount()const;
 	int TriangleCount()const;
 	float Width()const;
@@ -32,6 +36,7 @@ public:
     const DirectX::XMFLOAT3& TangentX(int i)const { return mTangentX[i]; }
 
 private:
+	ComPtr<ID3D12Resource> mVertexBufferUpload;
 	ComPtr<ID3D12Resource> mVertexBuffer;
 	ComPtr<ID3D12Resource> mDefaultBuffer;
 	ComPtr<ID3D12Resource> mIndexBuffer;

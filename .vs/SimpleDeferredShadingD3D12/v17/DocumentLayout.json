@@ -1,0 +1,175 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "E:\\deferred_renderer_in_d3d12\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{F840468D-2DBB-4F40-B215-4232A0935A79}|clusteredShadingD3D12.vcxproj|E:\\deferred_renderer_in_d3d12\\Wave.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F840468D-2DBB-4F40-B215-4232A0935A79}|clusteredShadingD3D12.vcxproj|solutionrelative:Wave.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F840468D-2DBB-4F40-B215-4232A0935A79}|clusteredShadingD3D12.vcxproj|E:\\deferred_renderer_in_d3d12\\DeferredRender.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F840468D-2DBB-4F40-B215-4232A0935A79}|clusteredShadingD3D12.vcxproj|solutionrelative:DeferredRender.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F840468D-2DBB-4F40-B215-4232A0935A79}|clusteredShadingD3D12.vcxproj|E:\\deferred_renderer_in_d3d12\\DirectxApp.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F840468D-2DBB-4F40-B215-4232A0935A79}|clusteredShadingD3D12.vcxproj|solutionrelative:DirectxApp.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F840468D-2DBB-4F40-B215-4232A0935A79}|clusteredShadingD3D12.vcxproj|E:\\deferred_renderer_in_d3d12\\DirectXMathConverter.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F840468D-2DBB-4F40-B215-4232A0935A79}|clusteredShadingD3D12.vcxproj|solutionrelative:DirectXMathConverter.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F840468D-2DBB-4F40-B215-4232A0935A79}|clusteredShadingD3D12.vcxproj|E:\\deferred_renderer_in_d3d12\\Wave.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F840468D-2DBB-4F40-B215-4232A0935A79}|clusteredShadingD3D12.vcxproj|solutionrelative:Wave.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F840468D-2DBB-4F40-B215-4232A0935A79}|clusteredShadingD3D12.vcxproj|E:\\deferred_renderer_in_d3d12\\ScreenQuadRenderer.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F840468D-2DBB-4F40-B215-4232A0935A79}|clusteredShadingD3D12.vcxproj|solutionrelative:ScreenQuadRenderer.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F840468D-2DBB-4F40-B215-4232A0935A79}|clusteredShadingD3D12.vcxproj|E:\\deferred_renderer_in_d3d12\\CameraManager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F840468D-2DBB-4F40-B215-4232A0935A79}|clusteredShadingD3D12.vcxproj|solutionrelative:CameraManager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F840468D-2DBB-4F40-B215-4232A0935A79}|clusteredShadingD3D12.vcxproj|E:\\deferred_renderer_in_d3d12\\d3dUtil.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F840468D-2DBB-4F40-B215-4232A0935A79}|clusteredShadingD3D12.vcxproj|solutionrelative:d3dUtil.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F840468D-2DBB-4F40-B215-4232A0935A79}|clusteredShadingD3D12.vcxproj|E:\\deferred_renderer_in_d3d12\\DirectxHelper.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F840468D-2DBB-4F40-B215-4232A0935A79}|clusteredShadingD3D12.vcxproj|solutionrelative:DirectxHelper.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Wave.h",
+              "DocumentMoniker": "E:\\deferred_renderer_in_d3d12\\Wave.h",
+              "RelativeDocumentMoniker": "Wave.h",
+              "ToolTip": "E:\\deferred_renderer_in_d3d12\\Wave.h",
+              "RelativeToolTip": "Wave.h",
+              "ViewState": "AQIAABkAAAAAAAAAAAAAwDUAAAAdAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-05-13T20:53:17.946Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Wave.cpp",
+              "DocumentMoniker": "E:\\deferred_renderer_in_d3d12\\Wave.cpp",
+              "RelativeDocumentMoniker": "Wave.cpp",
+              "ToolTip": "E:\\deferred_renderer_in_d3d12\\Wave.cpp",
+              "RelativeToolTip": "Wave.cpp",
+              "ViewState": "AQIAAPwAAAAAAAAAAAAlwCEBAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-05-13T20:28:05.015Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DeferredRender.cpp",
+              "DocumentMoniker": "E:\\deferred_renderer_in_d3d12\\DeferredRender.cpp",
+              "RelativeDocumentMoniker": "DeferredRender.cpp",
+              "ToolTip": "E:\\deferred_renderer_in_d3d12\\DeferredRender.cpp",
+              "RelativeToolTip": "DeferredRender.cpp",
+              "ViewState": "AQIAAOgAAAAAAAAAAAAawAIBAAAbAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-05-13T22:13:47.803Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "DirectxApp.h",
+              "DocumentMoniker": "E:\\deferred_renderer_in_d3d12\\DirectxApp.h",
+              "RelativeDocumentMoniker": "DirectxApp.h",
+              "ToolTip": "E:\\deferred_renderer_in_d3d12\\DirectxApp.h",
+              "RelativeToolTip": "DirectxApp.h",
+              "ViewState": "AQIAANwAAAAAAAAAAAAawAcBAAAPAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-05-13T20:41:25.841Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "DirectXMathConverter.h",
+              "DocumentMoniker": "E:\\deferred_renderer_in_d3d12\\DirectXMathConverter.h",
+              "RelativeDocumentMoniker": "DirectXMathConverter.h",
+              "ToolTip": "E:\\deferred_renderer_in_d3d12\\DirectXMathConverter.h",
+              "RelativeToolTip": "DirectXMathConverter.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-05-13T20:41:17.041Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "d3dUtil.cpp",
+              "DocumentMoniker": "E:\\deferred_renderer_in_d3d12\\d3dUtil.cpp",
+              "RelativeDocumentMoniker": "d3dUtil.cpp",
+              "ToolTip": "E:\\deferred_renderer_in_d3d12\\d3dUtil.cpp",
+              "RelativeToolTip": "d3dUtil.cpp",
+              "ViewState": "AQIAABsAAAAAAAAAAAAAADYAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-05-13T20:40:54.568Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "DirectxHelper.cpp",
+              "DocumentMoniker": "E:\\deferred_renderer_in_d3d12\\DirectxHelper.cpp",
+              "RelativeDocumentMoniker": "DirectxHelper.cpp",
+              "ToolTip": "E:\\deferred_renderer_in_d3d12\\DirectxHelper.cpp",
+              "RelativeToolTip": "DirectxHelper.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACEAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-05-13T20:28:18.746Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ScreenQuadRenderer.cpp",
+              "DocumentMoniker": "E:\\deferred_renderer_in_d3d12\\ScreenQuadRenderer.cpp",
+              "RelativeDocumentMoniker": "ScreenQuadRenderer.cpp",
+              "ToolTip": "E:\\deferred_renderer_in_d3d12\\ScreenQuadRenderer.cpp",
+              "RelativeToolTip": "ScreenQuadRenderer.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACEAAAAxAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-05-13T20:28:14.619Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "CameraManager.cpp",
+              "DocumentMoniker": "E:\\deferred_renderer_in_d3d12\\CameraManager.cpp",
+              "RelativeDocumentMoniker": "CameraManager.cpp",
+              "ToolTip": "E:\\deferred_renderer_in_d3d12\\CameraManager.cpp",
+              "RelativeToolTip": "CameraManager.cpp",
+              "ViewState": "AQIAACQBAAAAAAAAAADwvz8BAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-05-13T20:10:56.392Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
