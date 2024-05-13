@@ -9,6 +9,7 @@
 #include "VertexStructures.h"
 #include "GameTimer.h"
 #include "MathHelper.h"
+#include "FrameResource.h"
 
 using Microsoft::WRL::ComPtr;
 using namespace std;
@@ -171,8 +172,7 @@ protected:
 			mDeferredTech.Init();
 			mDeferredTech.UpdateConstantBuffer(mCamData, mLightData);
 
-			mWave->Init(128,128,1.0f,0.03f,4.0f,0.2f);
-
+			mWave = std::make_unique<Wave>(128, 128, 1.0f, 0.03f, 4.0f, 0.2f);
 			ThrowIfFailed(mCommandList->Close());
 			ID3D12CommandList* ppCommandLists[] = { mCommandList.Get() };
 			GetDeviceResources()->GetCommandQueue()->ExecuteCommandLists(_countof(ppCommandLists), ppCommandLists);
@@ -261,10 +261,10 @@ protected:
 		}
 
 		// Update the wave simulation.
-		mWave->Update(gt.DeltaTime());
+		// mWave->Update(gt.DeltaTime());
 
 		// Update the wave vertex buffer with the new solution.
-		auto currWavesVB = mCurrFrameResource->WavesVB.get();
+		// auto currWavesVB = mCurrFrameResource->WavesVB.get();
 		for (int i = 0; i < mWave->VertexCount(); ++i)
 		{
 			NormalVertex v;
@@ -272,11 +272,11 @@ protected:
 			v.position = DirectX::XMFLOAT4(mWave->Position(i).x,mWave->Position(i).y, mWave->Position(i).z,1.0f);
 		
 
-			currWavesVB->CopyData(i, v);
+			// currWavesVB->CopyData(i, v);
 		}
 
 		// Set the dynamic VB of the wave renderitem to the current frame VB.
-		mWavesRitem->Geo->VertexBufferGPU = currWavesVB->Resource();
+		// mWavesRitem->Geo->VertexBufferGPU = currWavesVB->Resource();
 	}
 
 

@@ -13,6 +13,13 @@ void Wave::Init(int m, int n, float dx, float dt, float speed, float damping)
 {
 	resourceSetup(m,n,dx,dt,speed,damping);
 }
+Wave::~Wave()
+{
+}
+Wave::Wave(int m, int n, float dx, float dt, float speed, float damping)
+{
+	Init(m, n, dx, dt, speed, damping);
+}
 
 void Wave::resourceSetup(int m, int n, float dx, float dt, float speed, float damping)
 {
@@ -125,7 +132,6 @@ void Wave::resourceSetup(int m, int n, float dx, float dt, float speed, float da
 	mIndexView.SizeInBytes= sizeof(int)*triangles.size();
 	return;
 }
-
 void Wave::Render(ComPtr<ID3D12GraphicsCommandList> commandList)
 {
 
